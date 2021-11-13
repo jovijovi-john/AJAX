@@ -51,11 +51,18 @@
                 let ajax = new XMLHttpRequest();
                 // objeto para configurar url e disparar requisições
 
-                ajax.open('GET', url)
+				console.log(`${ajax.readyState} => antes do open `) // 0
+		
+				ajax.onreadystatechange = () => {
+					// 1
+					console.log(ajax.readyState)
+					//3, 4 (vindos do servidor)
+				}
+
+				ajax.open('GET', url) // 2
                 // responsável por definir qual url será requisitada, e qual método será utilizado nesse processo
 
-                ajax.send()
-                console.log(ajax)
+				ajax.send()
             }
 
         </script>
