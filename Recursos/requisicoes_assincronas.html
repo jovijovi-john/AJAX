@@ -27,15 +27,17 @@
 	    	<div class="row mb-2">
 	    		<div class="col-md-4 center"></div>
 	    		<div class="col-md-4 center">
-	    			<a href="#" onclick="requisitarPagina('pagina_1_conteudo.php')" class="btn btn-primary">Página 1</a>
-	    			<a href="#" onclick="requisitarPagina('pagina_2_conteudo.html')" class="btn btn-primary">Página 2</a>
+	    			<a href="#" onclick="requisitarPagina('pagina_5_conteudo.php')" class="btn btn-primary">Página 1</a>
+	    			<a href="#" onclick="requisitarPagina('pagina_1_conteudo.php')" class="btn btn-primary">Página 2</a>
 	    			<a href="#" onclick="requisitarPagina('pagina_3_conteudo.html')" class="btn btn-primary">Página 3</a>
 	    		</div>
 	    		<div class="col-md-4 center"></div>
 	    	</div>
 	    	
 	    	<div class="row">
-		    	<div class="col-md-1"></div>
+		    	<div class="col-md-1">
+
+				</div>
 
 		    	<div class="col-md-10" id="conteudo">
 		    		
@@ -47,13 +49,22 @@
 		</div>	
         <script>
 
-            function requisitarPagina(url) {        
+            function requisitarPagina(url) {     
+				
+				let conteudo = document.getElementById("conteudo");
+
+				conteudo.innerHTML = "";
 
 				if (!document.getElementById("loading")){
+					
+					// se a página nao tiver a imagem de loading, então pode colocar ela
+
 					let imgLoading = document.createElement("img")
+					
 					imgLoading.id = "loading"
 					imgLoading.src = 'loading.gif'
 					imgLoading.className = 'rounded mx-auto d-block'
+					
 					document.getElementById("conteudo").appendChild(imgLoading)
 				}
 
@@ -61,9 +72,19 @@
                 // objeto para configurar url e disparar requisições
 
 				ajax.onreadystatechange = () => {
+					// a cada mudança de state(estado), faça alguma coisa
+					
 					if(ajax.readyState == 4) {
-						console.log('Requisição finalizada com sucesso')
-						document.getElementById("loading").remove()
+
+						console.log("O status da requisição é: "+ ajax.status)
+
+						if(ajax.status == 200) {
+							conteudo.innerHTML = "Requisição finalizada com sucesso"
+							//console.log('Requisição finalizada com sucesso')
+						} else if (ajax.status == 404) {
+							conteudo.innerHTML = "Requisição finalizada, porém o recurso solicitado não foi encontrado."
+						}
+						
 					}
 				}
 

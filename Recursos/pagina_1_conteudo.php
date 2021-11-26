@@ -1,6 +1,6 @@
 <?php
 
-	for ($i = 0; $i < 1000000000; $i++){}
+	for ($i = 0; $i < 500000000; $i++){}
 
 ?>
 <div class="panel panel-default">
