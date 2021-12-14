@@ -10,6 +10,9 @@
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+        <!-- script para converter xml para json -->
+        <script src="./xmltojson.js"></script>
+
         <script defer>
 
             function getFilmes(){
@@ -23,8 +26,15 @@
                     if (xmlHttp.readyState == 4) {
                     
                         if (xmlHttp.status == 200) {
-                            let xmlFilmes = xmlHttp.responseText
-                            console.log(xmlFilmes)
+                            
+                            let XMLFilmes = xmlHttp.responseText
+                            let parser = new DOMParser()
+                            let domFilmes = parser.parseFromString(XMLFilmes, "text/xml")
+                            console.log(domFilmes)
+                            
+                            let jsonFilmes = xmlToJson(domFilmes)
+                            console.log(jsonFilmes)
+
                         } else if (xmlHttp.status == 404) {
                             console.log("faz nada")
                         }
