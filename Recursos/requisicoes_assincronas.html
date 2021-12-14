@@ -27,9 +27,9 @@
 	    	<div class="row mb-2">
 	    		<div class="col-md-4 center"></div>
 	    		<div class="col-md-4 center">
-	    			<a href="#" onclick="requisitarPagina('pagina_5_conteudo.php')" class="btn btn-primary">Página 1</a>
-	    			<a href="#" onclick="requisitarPagina('pagina_1_conteudo.php')" class="btn btn-primary">Página 2</a>
-	    			<a href="#" onclick="requisitarPagina('pagina_3_conteudo.html')" class="btn btn-primary">Página 3</a>
+	    			<a href="#" onclick="requisitarPagina('pagina_1_conteudo.php')" class="btn btn-primary">Página 1</a>
+	    			<a href="#" onclick="requisitarPagina('pagina_2_conteudo.html')" class="btn btn-primary">Página 2</a>
+	    			<a href="#" onclick="requisitarPagina('pagina_3_conteudo.php')" class="btn btn-primary">Página 3</a>
 	    		</div>
 	    		<div class="col-md-4 center"></div>
 	    	</div>
@@ -71,6 +71,8 @@
 				let ajax = new XMLHttpRequest();
                 // objeto para configurar url e disparar requisições
 
+				console.log(ajax)
+				
 				ajax.onreadystatechange = () => {
 					// a cada mudança de state(estado), faça alguma coisa
 					
@@ -79,12 +81,14 @@
 						console.log("O status da requisição é: "+ ajax.status)
 
 						if(ajax.status == 200) {
-							conteudo.innerHTML = "Requisição finalizada com sucesso"
+							conteudo.innerHTML = ajax.responseText
 							//console.log('Requisição finalizada com sucesso')
+
+							console.log(ajax.responseText)
 						} else if (ajax.status == 404) {
-							conteudo.innerHTML = "Requisição finalizada, porém o recurso solicitado não foi encontrado."
-						}
-						
+							//conteudo.innerHTML = "Requisição finalizada, porém o recurso solicitado não foi encontrado."
+							conteudo.innerHTML = "...Tente novamente mais tarde"
+						}	
 					}
 				}
 
@@ -92,7 +96,7 @@
                 // responsável por definir qual url será requisitada, e qual método será utilizado nesse processo
 
 				ajax.send()
-            }
+			}
 
         </script>
 	</body>
