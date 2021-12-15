@@ -18,7 +18,7 @@
             function getFilmes(){
                 
                 let xmlHttp = new XMLHttpRequest()
-                xmlHttp.open("GET", "http://localhost/AJAX/Recursos_aula_08-final/filmes.xml")
+                xmlHttp.open("GET", "http://localhost/AJAX/Recursos_aula_08-11/filmes.xml")
                 // É importante passar o http://  para que o AJAX entenda qual será o protocolo utilizado 
             
                 xmlHttp.onreadystatechange = () => {
@@ -59,7 +59,7 @@
                                     generos.forEach((el, index) => {
                                         p3.innerHTML += el["#text"] ;
                                         
-                                        if (index != filme["genero"].length-1) {
+                                        if (index != generos.length-1) {
                                             p3.innerHTML += ", "
                                         }
                                     })    
@@ -74,7 +74,7 @@
                                     elenco.forEach((el, index) => {
                                         p4.innerHTML += el["#text"] ;
                                         
-                                        if (index != filme["elenco"]["ator"].length-1) {
+                                        if (index != elenco.length-1) {
                                             p4.innerHTML += ", "
                                         }
                                     })
